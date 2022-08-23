@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::disableForeignKeyConstraints();
+        Schema::create('purchase_order_details', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('id_pr');
+            $table->string('pr_no');
+            $table->string('po_no');
+            $table->bigInteger('id_barang');
+            $table->string('nama_barang');
+            $table->string('type');
+            $table->string('unit');
+            $table->decimal('jumlah');
+            $table->decimal('price');
+            $table->bigInteger('id_project');
+            $table->string('nama_project');
+            $table->string('status');
+            $table->string('pic');
+            $table->string('date_request');
+            $table->string('created_by');
+            $table->string('updated_by');
+            $table->timestamps();
+        });
+        Schema::enableForeignKeyConstraints();
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('purchase_order_details');
+        Schema::enableForeignKeyConstraints();
+    }
+};
